@@ -28,6 +28,7 @@ module.exports = {
       '@': resolve('src'),
       'views':resolve('src/views'),
       'components':resolve('src/components'),
+      'network':resolve('src/network'),
     }
   },
   module: {

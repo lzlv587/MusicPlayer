@@ -12,7 +12,38 @@ export default {
     },
     data(){
         return{
-            title:['发现音乐','我的音乐','朋友']
+            title:[
+                {
+                    title:'发现音乐',
+                    path:'/songs',
+                    child:[
+                        {
+                            title:'推荐',
+                            path:'/recommend'
+                        },
+                        {
+                            title:'排行榜',
+                            path:'/recommend'
+                        },
+                        {
+                            title:'歌单',
+                            path:'/recommend'
+                        },
+                        {
+                            title:'主播电台',
+                            path:'/recommend'
+                        }
+                    ]
+                },
+                {
+                    title:'我的音乐',
+                    path:'/mysongs'
+                },
+                {
+                    title:'朋友',
+                    path:'/friends'
+                }
+            ]
         }
     }
 }

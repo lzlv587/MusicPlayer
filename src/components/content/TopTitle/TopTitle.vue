@@ -3,14 +3,20 @@
         <div class="toptitle-one">
             <div>
                 <ul>
-                    <li v-for="item in title" :key="item">{{item}}</li>
+                    <a href="#">
+                        <li v-for="(item,index) in title" :key="index" class="title-item" @click="ChangeRouter(index)" :class="{itemactive:index===currentIndex}">{{item.title}}</li>
+                    </a>
                 </ul>
             </div>
-
         </div>
 
         <div class="toptitle-two">
-
+            <div>
+                <ul>
+                    <a href="#">
+                    </a>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -21,11 +27,33 @@ export default {
         title:{
             type:Array,
             default:[]
+        },
+        path:{
+            type:String,
+            default:''
+        }
+    },
+    data(){
+        return {
+            currentIndex:-1
+        }
+    },
+    methods:{
+        ChangeRouter(index){
+            this.currentIndex=index
+        }
+    },
+    computed:{
+        isActive(){
+            return this.$route.path.indexOf(this.path)!=-1
         }
     }
 }
 </script>
 <style scoped>
+.itemactive{
+    background-color: black;
+}
 .toptitle-one{
     position: -webkit-sticky; 
     position: sticky; 
@@ -39,6 +67,20 @@ export default {
     width: 1100px;
     margin: 0 auto;
 }
+.title-item{
+    float: left;
+    height: 100px;
+    color: #fff;
+    list-style: none;
+    line-height:100px;
+    font-size: 20px;
+    padding:0 19px
+}
+
+.title-item:hover{
+    background-color: black;
+}
+
 .toptitle-two{
     position: -webkit-sticky; 
     position: sticky; 
@@ -46,5 +88,8 @@ export default {
     width:100%;
     height: 50px;
     background-color: #C20C0C;
+}
+.toptitle-two>div>ul{
+    margin: 0px;
 }
 </style>
