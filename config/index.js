@@ -11,7 +11,6 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      proxy: {
         //解决跨域问题
             '/api': {
                 // 此处的写法，目的是为了 将 /api 替换成 https://autumnfish.cn/
@@ -23,7 +22,7 @@ module.exports = {
                     '^/api': ''
                 }
             }
-      }
+            
     },
 
     // Various Dev Server settings

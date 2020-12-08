@@ -4,5 +4,5 @@ export function request(config){
         baseURL: '/api',
         timeout: 30000,
     })
-    return instance
+    return instance(config)
 }
