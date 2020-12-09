@@ -1,7 +1,16 @@
 <template>
     <div>
         <top-title :title="title" @ChangeRouter="ChangeRouter"/>
-        <carousel :banners="BannerImg" :CarouselLoad="CarouselLoad"></carousel>
+
+        <div class="main">
+            <carousel :banners="BannerImg" :CarouselLoad="CarouselLoad" class="carousel"></carousel>
+            <div class="content">
+                <div class="content-left">
+                    <title-pop-rec :linecolor="TitlePopConfig.linecolor"></title-pop-rec>
+                </div>
+                <div class="content-right"></div>
+            </div>
+        </div>
         <h2>Songs</h2>
     </div>
 </template>
@@ -9,11 +18,13 @@
 import TopTitle from 'components/content/TopTitle/TopTitle'
 import {GetBanner} from 'network/songs'
 import carousel from 'components/commond/carousel/carousel'
+import TitlePopRec from 'views/songs/components/TitlePopRec'
 export default {
     name:'songs',
     components:{
         TopTitle,
-        carousel
+        carousel,
+        TitlePopRec
     },
     data(){
         return{
@@ -49,7 +60,10 @@ export default {
                     path:'/friends'
                 }
             ],
-            BannerImg:[]
+            BannerImg:[],
+            TitlePopConfig:{
+                linecolor:'green'
+            }
         }
     },
     created(){
@@ -74,3 +88,29 @@ export default {
 }
     
 </script>
+<style>
+.carousel{
+    width: 1300px;
+    margin: 0 auto;
+}
+.content{
+    width: 1300px;
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+}
+.main{
+    margin-top: 160px;
+}
+.content-left{
+    flex: 70;
+    padding :10px;
+    border-left: 2px solid rgb(175, 173, 173) !important;
+    border-right: 2px solid rgb(175, 173, 173) !important;
+}
+.content-right{
+    flex: 30;
+    border-right: 2px solid rgb(175, 173, 173) !important;
+
+}
+</style>

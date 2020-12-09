@@ -1,10 +1,10 @@
 <template>
     <div>
-        <el-carousel>
+        <el-carousel type="card">
             <el-carousel-item v-for="banner in banners" :key="banner.imageUrl">
                 <div>
                     <a :href="banner.link">
-                        <img :src="banner.imageUrl" style="height:100%"/>
+                        <img :src="banner.imageUrl" class="carousel-img"/>
                     </a>
                 </div>
             </el-carousel-item>
@@ -29,3 +29,10 @@ export default {
     },
 }
 </script>
+<style>
+.carousel-img{
+    max-width:100%;
+    height:auto; 
+}
+
+</style>

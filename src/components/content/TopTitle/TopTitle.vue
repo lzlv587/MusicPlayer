@@ -59,7 +59,7 @@ export default {
 }
 .toptitle-one{
     position: -webkit-sticky; 
-    position: sticky; 
+    position: fixed; 
     top: 0;
     width:100%;
     z-index: 1000;
@@ -86,13 +86,14 @@ export default {
 
 .toptitle-two{
     position: -webkit-sticky; 
-    position: sticky; 
+    position: fixed; 
+    z-index: 1000;
     top: 100px;
     width:100%;
     height: 50px;
     background-color: #C20C0C;
 }
-.toptitle-two>div>ul{
+.toptitle-two>div>ul,.toptitle-one>div>ul{
     margin: 0px;
 }
 </style>
