@@ -29,6 +29,7 @@ module.exports = {
       'views':resolve('src/views'),
       'components':resolve('src/components'),
       'network':resolve('src/network'),
+      'assets':resolve('src/assets'),
     }
   },
   module: {
