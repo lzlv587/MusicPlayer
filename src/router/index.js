@@ -25,6 +25,11 @@ export default new Router({
       path:'/mysongs',
       name:'mysongs',
       component:()=>import('@/views/mysongs/mysongs'),
+    },
+    {
+      path:'/songlist',
+      name:'songlist',
+      component:()=>import('@/views/songlist/songlist'),
     }
   ]
 })

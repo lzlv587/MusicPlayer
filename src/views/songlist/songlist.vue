@@ -1,12 +1,27 @@
 <template>
     <div class="songs">
-        <top-title :title="title" @ChangeRouter="ChangeRouter"/>
+        <top-title  @ChangeRouter="ChangeRouter"/>
 
         <div class="main">
-            <carousel :banners="BannerImg" :CarouselLoad="CarouselLoad" class="carousel"></carousel>
             <div class="content">
                 <div class="content-left">
-                    <pop-mui-rec :MusicArray="MusicArray" @click="ChangeCat"></pop-mui-rec>
+                    <div class="content-left-top">
+                        <div class="song-list-coverimg">
+                            <img :src="data.playlist.coverImgUrl" alt="">
+                        </div>
+                        <div class="song-list-info">
+                            <h2>{{data.playlist.name}}</h2>
+                            <div class="song-list-info-tag">
+                                <span>标签：</span>
+                                <el-tag type="info" v-for="item in data.playlist.tags" :key="item">{{item}}</el-tag>
+                            </div>
+                            <div class="song-list-info-desc">
+                                {{data.playlist.description}}
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
                 <div class="content-right"></div>
             </div>
@@ -15,15 +30,13 @@
 </template>
 <script>
 import TopTitle from 'components/content/TopTitle/TopTitle'
-import {GetBanner,GetMusicList} from 'network/songs'
+import {GetBanner,GetMusicList,GetSongListData} from 'network/songs'
 import carousel from 'components/commond/carousel/carousel'
-import PopMuiRec from 'views/songs/components/PopMuiRec/PopMuiRec'
 export default {
     name:'songs',
     components:{
         TopTitle,
         carousel,
-        PopMuiRec
     },
     data(){
         return{
@@ -71,51 +84,24 @@ export default {
                     path:'/mysongs'
                 }
             ],
-            BannerImg:[],
-            TitlePopConfig:{
-                linecolor:'green'
-            },
-            MusicArray:[]
+            currentId:0,
+            data:{}
         }
     },
     created(){
-        GetBanner().then(res=>{
-            for(var i=0;i<res.data.banners.length;i++){
-                console.log(res.data.banners[i].imageUrl)
-                var imgobj={};
-                imgobj.imageUrl=res.data.banners[i].imageUrl;
-                this.BannerImg.push(imgobj);
-            }
-            
-        })
-        GetMusicList().then(res=>{
-            console.log(res.data.playlists);
-            for(var i=0;i<res.data.playlists.length;i++){
-                this.MusicArray.push(res.data.playlists[i]);
-            }
+        this.currentId=this.$router.history.current.query.id
+        GetSongListData(this.currentId).then(res=>{
+            this.data=res.data
+            console.log(this.data)
         })
     },
     mounted(){
-        this.$bus.$on('ChangeCat',(res)=>{
-            console.log('测试接收事件总线'+res)
-            GetMusicList(res).then(res=>{
-                this.MusicArray=new Array
-                for(var i=0;i<res.data.playlists.length;i++){
-                    this.MusicArray.push(res.data.playlists[i]);
-                }
-            })
-        })
+
     },
     methods:{
         ChangeRouter(index){
             this.$router.replace(this.title[index].path)
         },
-        CarouselLoad(){
-            console.log('emit测试')
-        },
-        ChangeCat(){
-            
-        }
     }
 }
     
@@ -146,5 +132,37 @@ export default {
     border-right: 1px solid rgb(222, 222, 222) !important;
 
 }
+.content-left-top{
+    display: flex;
+}
+.song-list-coverimg{
+    margin:30px 60px;
+    height: 200px;
+    width:200px;
+    padding: 2px 2px;
+    border: 5px groove #d1d1d1;
+    border-radius: 20px;
+    float: left;
+}
+.song-list-info{
+    float: left;
+    flex:1;
+    padding:10px 10px;
+}
+.song-list-info-tag>span{
+    margin-left: 5px;
+}
+.song-list-coverimg>img{
+    width:100%;
+    border-radius: 20px;
 
+}
+.song-list-info-desc{
+    background-color:#eeedec;
+    margin:15px auto;
+    height:100px;
+    overflow:auto;
+    font-size: 11px;
+    font-family: "微软雅黑";
+}
 </style>

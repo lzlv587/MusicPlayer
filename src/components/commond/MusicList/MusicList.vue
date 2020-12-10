@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div>
-            <slot name="MusicItem">
+        <div >
+            <slot name="MusicItem"/>
         </div>
     </div>
 </template>

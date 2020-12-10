@@ -5,7 +5,7 @@
             <h4 slot="left">热门推荐</h4>
             <el-breadcrumb separator="|" slot="center" class="title">
                 <!-- <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> -->
-                <el-breadcrumb-item v-for="item in title" :key="item">{{item.text}}</el-breadcrumb-item>
+                <el-breadcrumb-item v-for="item in title" :key="item" @click.native="ChangeCat(item.text)"><a>{{item.text}}</a></el-breadcrumb-item>
             </el-breadcrumb>
         </title-frame>
     </div>
@@ -31,8 +31,17 @@ export default {
                     text:'摇滚'
                 },{
                     text:'乡村'
+                },{
+                    text:''
                 }
             ]
+        }
+    },
+    methods:{
+        ChangeCat(cat){
+            console.log('事件总线：子组件开始传递')
+            // this.$emit("ChangeCat",cat)
+            this.$bus.$emit('ChangeCat',cat)
         }
     }
 }

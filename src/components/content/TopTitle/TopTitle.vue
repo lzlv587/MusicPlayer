@@ -7,6 +7,10 @@
                         <li v-for="(item,index) in title" :key="index" class="title-item" @click="ChangeRouter(index)" :class="{itemactive:index===currentIndex}">{{item.title}}</li>
                     </a>
                 </ul>
+                <div class="search">
+                    <el-input placeholder="请输入内容" v-model="input" clearable></el-input>
+                    <el-button icon="el-icon-search" circle></el-button>
+                </div>
             </div>
         </div>
 
@@ -24,18 +28,55 @@
 export default {
     name:'TopTitle',
     props:{
-        title:{
-            type:Array,
-            default:[]
-        },
-        path:{
-            type:String,
-            default:''
-        }
+
     },
     data(){
         return {
-            currentIndex:-1
+            currentIndex:-1,
+            title:[
+                {
+                    title:'发现音乐',
+                    path:'/songs',
+                    child:[
+                        {
+                            title:'推荐',
+                            path:'/recommend'
+                        },
+                        {
+                            title:'排行榜',
+                            path:'/recommend'
+                        },
+                        {
+                            title:'歌单',
+                            path:'/recommend'
+                        },
+                        {
+                            title:'主播电台',
+                            path:'/recommend'
+                        }
+                    ]
+                },
+                {
+                    title:'我的音乐',
+                    path:'/mysongs'
+                },
+                {
+                    title:'朋友',
+                    path:'/friends'
+                },
+                {
+                    title:'商城',
+                    path:'/mysongs'
+                },
+                {
+                    title:'音乐人',
+                    path:'/mysongs'
+                },
+                {
+                    title:'下载客户端',
+                    path:'/mysongs'
+                }
+            ],
         }
     },
     methods:{
@@ -61,6 +102,7 @@ export default {
     position: -webkit-sticky; 
     position: fixed; 
     top: 0;
+    left: 0;
     width:100%;
     z-index: 1000;
     height: 100px;
@@ -87,13 +129,27 @@ export default {
 .toptitle-two{
     position: -webkit-sticky; 
     position: fixed; 
+    left: 0;
     z-index: 1000;
     top: 100px;
     width:100%;
-    height: 50px;
+    height: 10px;
     background-color: #C20C0C;
 }
 .toptitle-two>div>ul,.toptitle-one>div>ul{
     margin: 0px;
+}
+.search{
+    display: flex;
+    float: left;
+    margin:30px 50px
+}
+.search>input{
+    float: left;
+     
+}
+.search>button{
+    float: left;
+    margin-left: 5px;
 }
 </style>
