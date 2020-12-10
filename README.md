@@ -1,7 +1,10 @@
 # musicplayer
 
-Vue练手项目，仿网易云网站，开发中
-后端接口调用：https://autumnfish.cn/
+- Vue练手项目，仿网易云网站，开发中
+
+- 后端接口调用：https://autumnfish.cn/
+
+- 参考博客：https://blog.csdn.net/lzl980111/article/details/110931565
 
 ## 项目构建
 
