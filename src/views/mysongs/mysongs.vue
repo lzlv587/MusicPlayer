@@ -1,19 +1,24 @@
 <template>
-    <div>
+    <div class="mysongs">
         <top-title :title="title" @ChangeRouter="ChangeRouter"/>
         <carousel :banner="BannerImg"></carousel>
         <h2>MySongs</h2>
+        <div class="my-audio">
+            <my-audio/>
+        </div>
     </div>
 </template>
 <script>
 import TopTitle from 'components/content/TopTitle/TopTitle'
 import {GetBanner} from 'network/songs'
 import carousel from 'components/commond/carousel/carousel'
+import MyAudio from 'components/commond/Audio/MyAudio'
 export default {
     name:'mysongs',
     components:{
         TopTitle,
-        carousel
+        carousel,
+        MyAudio
     },
     data(){
         return{
@@ -67,3 +72,5 @@ export default {
 }
     
 </script>
+<style scoped>
+</style>

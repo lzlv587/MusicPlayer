@@ -6,22 +6,10 @@
             <div class="content">
                 <div class="content-left">
                     <div class="content-left-top">
-                        <div class="song-list-coverimg">
-                            <img :src="data.playlist.coverImgUrl" alt="">
-                        </div>
-                        <div class="song-list-info">
-                            <h2>{{data.playlist.name}}</h2>
-                            <div class="song-list-info-tag">
-                                <span>标签：</span>
-                                <el-tag type="info" v-for="item in data.playlist.tags" :key="item">{{item}}</el-tag>
-                            </div>
-                            <div class="song-list-info-desc">
-                                {{data.playlist.description}}
-                            </div>
-
-                        </div>
+                        <target-song-show :data='data'/>
                     </div>
-
+                    <song-list-show :tableData="tableData"/>
+                    <commend-list-show/>
                 </div>
                 <div class="content-right"></div>
             </div>
@@ -32,60 +20,23 @@
 import TopTitle from 'components/content/TopTitle/TopTitle'
 import {GetBanner,GetMusicList,GetSongListData} from 'network/songs'
 import carousel from 'components/commond/carousel/carousel'
+import SongListShow from './components/SongListShow/SongListShow'
+import TargetSongShow from './components/TargetSongShow/TargetSongShow'
+import CommendListShow from './components/CommendList/CommendListShow'
 export default {
     name:'songs',
     components:{
         TopTitle,
         carousel,
+        SongListShow,
+        TargetSongShow,
+        CommendListShow
     },
     data(){
         return{
-            title:[
-                {
-                    title:'发现音乐',
-                    path:'/songs',
-                    child:[
-                        {
-                            title:'推荐',
-                            path:'/recommend'
-                        },
-                        {
-                            title:'排行榜',
-                            path:'/recommend'
-                        },
-                        {
-                            title:'歌单',
-                            path:'/recommend'
-                        },
-                        {
-                            title:'主播电台',
-                            path:'/recommend'
-                        }
-                    ]
-                },
-                {
-                    title:'我的音乐',
-                    path:'/mysongs'
-                },
-                {
-                    title:'朋友',
-                    path:'/friends'
-                },
-                {
-                    title:'商城',
-                    path:'/mysongs'
-                },
-                {
-                    title:'音乐人',
-                    path:'/mysongs'
-                },
-                {
-                    title:'下载客户端',
-                    path:'/mysongs'
-                }
-            ],
             currentId:0,
-            data:{}
+            data:{},
+            tableData:{},
         }
     },
     created(){
@@ -93,6 +44,8 @@ export default {
         GetSongListData(this.currentId).then(res=>{
             this.data=res.data
             console.log(this.data)
+            this.tableData=res.data.playlist.tracks
+            console.log(this.tableData)
         })
     },
     mounted(){
@@ -113,7 +66,7 @@ export default {
 }
 .content{
     width: 1300px;
-    height: 600px;
+    height: 1800px;
     margin: 0 auto;
     display: flex;
     background-color: white;
@@ -158,6 +111,7 @@ export default {
 
 }
 .song-list-info-desc{
+    padding: 5px 10px;
     background-color:#eeedec;
     margin:15px auto;
     height:100px;

@@ -8,22 +8,30 @@
                 <div class="content-left">
                     <pop-mui-rec :MusicArray="MusicArray" @click="ChangeCat"></pop-mui-rec>
                 </div>
-                <div class="content-right"></div>
+                <div class="content-right">
+                    <recommend-singer-show :SingersData="artists"/>
+                </div>
             </div>
         </div>
+        <my-audio/>
     </div>
 </template>
 <script>
 import TopTitle from 'components/content/TopTitle/TopTitle'
-import {GetBanner,GetMusicList} from 'network/songs'
+import {GetBanner,GetMusicList,GetRecommendSinger} from 'network/songs'
 import carousel from 'components/commond/carousel/carousel'
 import PopMuiRec from 'views/songs/components/PopMuiRec/PopMuiRec'
+import RecommendSingerShow from './components/RecommendSinger/RecommendSingerShow'
+import MyAudio from 'components/commond/Audio/MyAudio'
+
 export default {
     name:'songs',
     components:{
         TopTitle,
         carousel,
-        PopMuiRec
+        PopMuiRec,
+        RecommendSingerShow,
+        MyAudio
     },
     data(){
         return{
@@ -75,7 +83,8 @@ export default {
             TitlePopConfig:{
                 linecolor:'green'
             },
-            MusicArray:[]
+            MusicArray:[],
+            artists:[]
         }
     },
     created(){
@@ -93,6 +102,9 @@ export default {
             for(var i=0;i<res.data.playlists.length;i++){
                 this.MusicArray.push(res.data.playlists[i]);
             }
+        })
+        GetRecommendSinger().then(res=>{
+            this.artists=res.data.artists
         })
     },
     mounted(){
@@ -127,7 +139,7 @@ export default {
 }
 .content{
     width: 1300px;
-    height: 600px;
+    height: 1800px;
     margin: 0 auto;
     display: flex;
     background-color: white;
@@ -144,7 +156,7 @@ export default {
 .content-right{
     flex: 30;
     border-right: 1px solid rgb(222, 222, 222) !important;
-
+    padding:10px
 }
 
 </style>

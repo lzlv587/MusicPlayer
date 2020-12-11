@@ -22,3 +22,12 @@ export function GetSongListData(id){
         }
     })
 }
+export function GetRecommendSinger(){
+    return request({
+        url:'/top/artists',
+        params:{
+            offset:0,
+            limit:5
+        }
+    })
+}

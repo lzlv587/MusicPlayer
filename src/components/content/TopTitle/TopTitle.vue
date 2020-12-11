@@ -82,9 +82,8 @@ export default {
     methods:{
         ChangeRouter(index){
             this.currentIndex=index
-            console.log(this.path)
-            this.$emit('ChangeRouter',index)
-            // this.$router.replace(this.path)
+            // this.$emit('ChangeRouter',index)
+            this.$router.replace(this.title[index].path)
         }
     },
     computed:{
