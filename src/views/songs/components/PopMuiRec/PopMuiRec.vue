@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pop-rec">
         <!-- 热门推荐组件 -->
         <title-pop-rec/>
         <music-list>
@@ -29,3 +29,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+.pop-rec{
+    display: flow-root;
+}
+</style>

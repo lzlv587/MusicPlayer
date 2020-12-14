@@ -7,6 +7,8 @@
             <div class="content">
                 <div class="content-left">
                     <pop-mui-rec :MusicArray="MusicArray" @click="ChangeCat"></pop-mui-rec>
+                    <new-disc/>
+
                 </div>
                 <div class="content-right">
                     <recommend-singer-show :SingersData="artists"/>
@@ -23,7 +25,7 @@ import carousel from 'components/commond/carousel/carousel'
 import PopMuiRec from 'views/songs/components/PopMuiRec/PopMuiRec'
 import RecommendSingerShow from './components/RecommendSinger/RecommendSingerShow'
 import MyAudio from 'components/commond/Audio/MyAudio'
-
+import NewDisc from './components/NewDisc/NewDiscShow'
 export default {
     name:'songs',
     components:{
@@ -31,7 +33,8 @@ export default {
         carousel,
         PopMuiRec,
         RecommendSingerShow,
-        MyAudio
+        MyAudio,
+        NewDisc
     },
     data(){
         return{
@@ -141,22 +144,24 @@ export default {
     width: 1300px;
     height: 1800px;
     margin: 0 auto;
-    display: flex;
     background-color: white;
 }
 .main{
     margin-top: 160px;
 }
 .content-left{
-    flex: 70;
+    width:70%;
     padding :10px;
     border-left: 1px solid rgb(222, 222, 222) !important;
     border-right: 1px solid rgb(222, 222, 222) !important;
+    float: left;
 }
 .content-right{
-    flex: 30;
+    width:26%;
     border-right: 1px solid rgb(222, 222, 222) !important;
-    padding:10px
+    padding:10px;
+    float: right;
+
 }
 
 </style>
