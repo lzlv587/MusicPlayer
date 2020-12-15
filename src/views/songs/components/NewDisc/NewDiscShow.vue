@@ -3,30 +3,16 @@
         <new-disc-frame>
             <div slot="content-item-one" class="new-disc-content">
                 <ul class="item">
-                    <li>测试1</li>
-                    <li>测试2</li>
-                    <li>测试3</li>
-                    <li>测试4</li>
-                    <li>测试5</li>
-                    <li>测试6</li>
-                    <li>测试7</li>
-                    <li>测试8</li>
-                    <li>测试9</li>
-                    <li>测试10</li>
-                    <li>测试11</li>
-                    <li>测试12</li>
-                    <li>测试13</li>
-                    <li>测试14</li>
-                    <li>测试15</li>
-                    <li>测试16</li>
-                    <li>测试17</li>
-                    <li>测试18</li>
-                    <li>测试19</li>
-                    <li>测试20</li>
+                    <li>测试第0个</li>
+                    <li>
+                        <new-disc-item/>
+                    </li>
                 </ul>
             </div>
             <div slot="content-item-two" class="new-disc-content">
                 <ul class="item">
+                    <li>测试第1个</li>
+
                     <li>测试测试1</li>
                     <li>测试测试2</li>
                     <li>测试测试3</li>
@@ -37,10 +23,14 @@
                     <li>测试测试8</li>
                     <li>测试测试9</li>
                     <li>测试测试10</li>
+                    <li>测试第1个</li>
+
                 </ul>
             </div>
             <div slot="content-item-three" class="new-disc-content">
                 <ul class="item">
+                    <li>测试第2个</li>
+
                     <li>测试中国测试1</li>
                     <li>测试中国测试2</li>
                     <li>测试中国测试3</li>
@@ -61,10 +51,14 @@
                     <li>测试中国测试18</li>
                     <li>测试中国测试19</li>
                     <li>测试中国测试20</li>
+                    <li>测试第2个</li>
+
                 </ul>
             </div>
             <div slot="content-item-four" class="new-disc-content">
                 <ul class="item">
+                    <li>测试第3个</li>
+
                     <li>测试中国测试1</li>
                     <li>测试中国测试2</li>
                     <li>测试中国测试3</li>
@@ -85,6 +79,8 @@
                     <li>测试中国测试18</li>
                     <li>测试中国测试19</li>
                     <li>测试中国测试20</li>
+                    <li>测试第3个</li>
+
                 </ul>
             </div>
         </new-disc-frame>
@@ -92,10 +88,12 @@
 </template>
 <script>
 import NewDiscFrame from 'components/commond/NewDiscFrame/NewDiscFrame.vue'
+import NewDiscItem from './NewDiscItem'
 export default {
     name:"NewDiscShow",
     components:{
-        NewDiscFrame
+        NewDiscFrame,
+        NewDiscItem
     },
     methods:{
     }
@@ -105,7 +103,7 @@ export default {
 .new-disc-content{
     overflow: hidden;
     float: left;
-    width: 1000px;
+    width: 800px;
 }
 .new-disc-content>ul{
     list-style: none;
