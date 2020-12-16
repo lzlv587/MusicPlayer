@@ -31,3 +31,11 @@ export function GetRecommendSinger(){
         }
     })
 }
+export function GetNewDisc(){
+    return request({
+        url:'/top/album',
+        params:{
+            limit:10
+        }
+    })
+}

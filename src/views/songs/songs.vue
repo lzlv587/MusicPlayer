@@ -20,7 +20,7 @@
 </template>
 <script>
 import TopTitle from 'components/content/TopTitle/TopTitle'
-import {GetBanner,GetMusicList,GetRecommendSinger} from 'network/songs'
+import {GetBanner,GetMusicList,GetRecommendSinger,GetNewDisc} from 'network/songs'
 import carousel from 'components/commond/carousel/carousel'
 import PopMuiRec from 'views/songs/components/PopMuiRec/PopMuiRec'
 import RecommendSingerShow from './components/RecommendSinger/RecommendSingerShow'
@@ -87,7 +87,8 @@ export default {
                 linecolor:'green'
             },
             MusicArray:[],
-            artists:[]
+            artists:[],
+            DiscData:[]
         }
     },
     created(){
@@ -108,6 +109,14 @@ export default {
         })
         GetRecommendSinger().then(res=>{
             this.artists=res.data.artists
+        })
+        GetNewDisc().then(res=>{
+            console.log("获取新碟上架数据")
+            console.log(res)
+            for(var i=0;i<10;i++){
+                console.log(res.data.monthData[i])
+                this.DiscData.push(res.data.monthData[i])
+            }
         })
     },
     mounted(){

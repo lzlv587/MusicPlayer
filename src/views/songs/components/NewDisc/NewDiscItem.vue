@@ -1,8 +1,11 @@
 <template>
     <div class="new-disc-item">
-        <a href="#" class="new-disc-item">
-            <img src="~assets/img/test.jpg" class="image" @click="GotoSongList()">
-        </a>
+        <div>
+            <a href="#" class="new-disc-item">
+                <img src="~assets/img/test.jpg" class="image" @click="GotoSongList()">
+                <p>测试内容</p>
+            </a>
+        </div>
     </div>
 </template>
 <script>
@@ -12,7 +15,7 @@ export default {
 </script>
 <style scoped>
 .new-disc-item{
-    height: 150px;
+    /* height: 150px; */
     width: 150px;
 }
 .new-disc-item>img{

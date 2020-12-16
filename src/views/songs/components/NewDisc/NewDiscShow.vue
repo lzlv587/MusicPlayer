@@ -3,7 +3,6 @@
         <new-disc-frame>
             <div slot="content-item-one" class="new-disc-content">
                 <ul class="item">
-                    <li>测试第0个</li>
                     <li>
                         <new-disc-item/>
                     </li>
