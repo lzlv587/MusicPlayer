@@ -8,6 +8,7 @@
     </div>
 </template>
 <script>
+import TitleFrame from 'components/commond/TitleFrame/TitleFrame'
 export default {
     name:'TitleSongList',
     components:{

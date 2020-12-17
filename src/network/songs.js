@@ -39,3 +39,11 @@ export function GetNewDisc(){
         }
     })
 }
+export function GetSearchData(keywords){
+    return request({
+        url:'/search',
+        params:{
+            keywords:keywords
+        }
+    })
+}

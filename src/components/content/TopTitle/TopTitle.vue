@@ -9,7 +9,7 @@
                 </ul>
                 <div class="search">
                     <el-input placeholder="请输入内容" v-model="input" clearable></el-input>
-                    <el-button icon="el-icon-search" circle></el-button>
+                    <el-button icon="el-icon-search" circle @click="search()"></el-button>
                 </div>
             </div>
         </div>
@@ -25,7 +25,8 @@
     </div>
 </template>
 <script>
-export default {
+import {Debounce,Throttle} from 'assets/js/public'
+export default { 
     name:'TopTitle',
     props:{
 
@@ -77,13 +78,24 @@ export default {
                     path:'/mysongs'
                 }
             ],
+            input:""
         }
+    },
+    watch:{
+        input:Debounce(
+            function(newVal,oldVal){
+            this.input=newVal;
+        },200)
     },
     methods:{
         ChangeRouter(index){
             this.currentIndex=index
             // this.$emit('ChangeRouter',index)
             this.$router.replace(this.title[index].path)
+        },
+        search(){
+            //查询：跳转路由，带参
+            this.$router.push({path:'/search',query: {keywords:this.input}})
         }
     },
     computed:{

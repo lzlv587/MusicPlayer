@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="singer-item" v-for="item in SingersData" :key="item">
+        <div class="singer-item" v-for="(item,index) in SingersData" :key="index">
             <recommend-singer-item :Singer="item"/>
         </div>
     </div>

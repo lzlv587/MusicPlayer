@@ -1,100 +1,68 @@
 <template>
     <div>
-        <new-disc-frame>
-            <div slot="content-item-one" class="new-disc-content">
-                <ul class="item">
-                    <li>
-                        <new-disc-item/>
-                    </li>
-                </ul>
-            </div>
-            <div slot="content-item-two" class="new-disc-content">
-                <ul class="item">
-                    <li>测试第1个</li>
-
-                    <li>测试测试1</li>
-                    <li>测试测试2</li>
-                    <li>测试测试3</li>
-                    <li>测试测试4</li>
-                    <li>测试测试5</li>
-                    <li>测试测试6</li>
-                    <li>测试测试7</li>
-                    <li>测试测试8</li>
-                    <li>测试测试9</li>
-                    <li>测试测试10</li>
-                    <li>测试第1个</li>
-
-                </ul>
-            </div>
-            <div slot="content-item-three" class="new-disc-content">
-                <ul class="item">
-                    <li>测试第2个</li>
-
-                    <li>测试中国测试1</li>
-                    <li>测试中国测试2</li>
-                    <li>测试中国测试3</li>
-                    <li>测试中国测试4</li>
-                    <li>测试中国测试5</li>
-                    <li>测试中国测试6</li>
-                    <li>测试中国测试7</li>
-                    <li>测试中国测试8</li>
-                    <li>测试中国测试9</li>
-                    <li>测试中国测试10</li>
-                    <li>测试中国测试11</li>
-                    <li>测试中国测试12</li>
-                    <li>测试中国测试13</li>
-                    <li>测试中国测试14</li>
-                    <li>测试中国测试15</li>
-                    <li>测试中国测试16</li>
-                    <li>测试中国测试17</li>
-                    <li>测试中国测试18</li>
-                    <li>测试中国测试19</li>
-                    <li>测试中国测试20</li>
-                    <li>测试第2个</li>
-
-                </ul>
-            </div>
-            <div slot="content-item-four" class="new-disc-content">
-                <ul class="item">
-                    <li>测试第3个</li>
-
-                    <li>测试中国测试1</li>
-                    <li>测试中国测试2</li>
-                    <li>测试中国测试3</li>
-                    <li>测试中国测试4</li>
-                    <li>测试中国测试5</li>
-                    <li>测试中国测试6</li>
-                    <li>测试中国测试7</li>
-                    <li>测试中国测试8</li>
-                    <li>测试中国测试9</li>
-                    <li>测试中国测试10</li>
-                    <li>测试中国测试11</li>
-                    <li>测试中国测试12</li>
-                    <li>测试中国测试13</li>
-                    <li>测试中国测试14</li>
-                    <li>测试中国测试15</li>
-                    <li>测试中国测试16</li>
-                    <li>测试中国测试17</li>
-                    <li>测试中国测试18</li>
-                    <li>测试中国测试19</li>
-                    <li>测试中国测试20</li>
-                    <li>测试第3个</li>
-
-                </ul>
-            </div>
-        </new-disc-frame>
+        <title-frame :config="config">
+            <h4 slot="left">新碟上市</h4>
+        </title-frame>
+        <div class="new-disc-show-content">
+            <new-disc-frame>
+                <div slot="content-item-one" class="new-disc-content">
+                    <new-disc-list :DiscData="DiscDataOne"/>
+                </div>
+                <div slot="content-item-two" class="new-disc-content">
+                    <new-disc-list :DiscData="DiscDataTwo"/>
+                </div>
+                <div slot="content-item-three" class="new-disc-content">
+                    <new-disc-list :DiscData="DiscDataThree"/>
+                </div>
+                <div slot="content-item-four" class="new-disc-content">
+                    <new-disc-list :DiscData="DiscDataFour"/>
+                </div>
+            </new-disc-frame>
+        </div>
     </div>
 </template>
 <script>
+import TitleFrame from 'components/commond/TitleFrame/TitleFrame'
 import NewDiscFrame from 'components/commond/NewDiscFrame/NewDiscFrame.vue'
 import NewDiscItem from './NewDiscItem'
+import NewDiscList from './NewDiscList.vue'
 export default {
     name:"NewDiscShow",
     components:{
         NewDiscFrame,
-        NewDiscItem
+        NewDiscItem,
+        NewDiscList,
+        TitleFrame,
     },
     methods:{
+    },
+    props:{
+        DiscData:Array
+    },
+    data(){
+        return {
+            DiscDataOne:[],
+            DiscDataTwo:[],
+            DiscDataThree:[],
+            DiscDataFour:[],
+            config:{
+                linecolor:'2px solid #C20C0C !important'
+            },
+        }
+    },
+    watch:{
+        DiscData: function(newVal,oldVal){
+            for(var i=0;i<4;i++){
+                this.DiscDataOne.push(newVal[i]);
+                this.DiscDataThree.push(newVal[i]);
+            }
+            for(var i=4;i<8;i++){
+                this.DiscDataTwo.push(newVal[i]);
+                this.DiscDataFour.push(newVal[i]);
+            }
+        }
+    },
+    computed:{
     }
 }
 </script>
@@ -102,12 +70,15 @@ export default {
 .new-disc-content{
     overflow: hidden;
     float: left;
-    width: 800px;
+    width: 770px;
 }
 .new-disc-content>ul{
     list-style: none;
 }
 .new-disc-content>ul>li{
     float: left;
+}
+.new-disc-show-content{
+    margin-top: 20px;
 }
 </style>

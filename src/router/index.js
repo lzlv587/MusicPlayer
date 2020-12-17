@@ -30,6 +30,11 @@ export default new Router({
       path:'/songlist',
       name:'songlist',
       component:()=>import('@/views/songlist/songlist'),
+    },
+    {
+      path:'/search',
+      name:'search',
+      component:()=>import('@/views/search/search'),
     }
   ]
 })

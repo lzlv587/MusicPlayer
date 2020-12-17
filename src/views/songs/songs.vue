@@ -7,7 +7,7 @@
             <div class="content">
                 <div class="content-left">
                     <pop-mui-rec :MusicArray="MusicArray" @click="ChangeCat"></pop-mui-rec>
-                    <new-disc/>
+                    <new-disc :DiscData="DiscData"/>
 
                 </div>
                 <div class="content-right">
@@ -111,12 +111,13 @@ export default {
             this.artists=res.data.artists
         })
         GetNewDisc().then(res=>{
-            console.log("获取新碟上架数据")
-            console.log(res)
             for(var i=0;i<10;i++){
                 console.log(res.data.monthData[i])
                 this.DiscData.push(res.data.monthData[i])
             }
+        })
+        GetSearchData().then(res=>{
+            
         })
     },
     mounted(){
@@ -140,7 +141,7 @@ export default {
         ChangeCat(){
             
         }
-    }
+    },
 }
     
 </script>

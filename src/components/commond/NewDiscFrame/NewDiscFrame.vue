@@ -193,4 +193,7 @@ export default {
     left: 0;
     transition: left 0s ease 0s;
 }
+.new-disc-frame-content{
+    margin-top: 10px;
+}
 </style>
